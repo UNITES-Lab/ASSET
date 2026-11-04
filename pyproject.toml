@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "asset"
+version = "0.1.0"
+description = "Acquisition-sensitive subspace estimation for test-time adaptation of medical vision-language models"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+    "accelerate>=1.11,<1.12",
+    "datasets>=4.0,<4.1",
+    "diffusers>=0.37,<0.38",
+    "huggingface-hub>=0.36,<0.37",
+    "imagecorruptions>=1.1.2,<1.2",
+    "numpy>=2.2,<2.3",
+    "pandas>=2.3,<2.4",
+    "peft>=0.18.1,<0.19",
+    "pillow>=12.0,<12.1",
+    "scikit-image>=0.26,<0.27",
+    "setuptools>=80,<81",
+    "torch>=2.9,<2.10",
+    "torchvision>=0.24,<0.25",
+    "transformers>=4.57.6,<4.58",
+]
+
+[project.optional-dependencies]
+lora = [
+    "llamafactory==0.9.5",
+    "torchaudio>=2.9,<2.10",
+]
+
+[project.scripts]
+asset = "asset.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asset"]
+
+[tool.uv]
+override-dependencies = ["pillow>=12.0,<12.1"]
